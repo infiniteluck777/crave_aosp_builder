@@ -451,6 +451,7 @@ jobs:
         echo "Build is queued! Please wait for your build to start."
         echo "Check foss.crave.io Dashboard to see builds"
         echo "Running build's log will show up here!"
+        echo " hello mr. you wait ha jayda bakchodi neeh."
 
 
         crave run --no-patch --${CLEAN} "rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && \
@@ -460,19 +461,28 @@ jobs:
 
         # Sync the repositories
         /opt/crave/resync.sh  && \
+       
+        #  remove error 
+        rm -rf external/chromium-webview ; \
+        echo "======= remove Done ======" ; \
 
+        #  fix error 
+        rm -rf packages/apps/ParanoidSense ; \
+        echo "=======  Done ======" ; \
+        
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
         source build/envsetup.sh && \
+        echo "=======  everything Done ======" ; \
 
         echo "Repository: ${{ github.repository }}"; \
         echo "Run ID: ${{ github.run_id }}"; \
 
-        # Build the ROM
-        $LUNCH && \
-        make installclean && \
-        ${{ github.event.inputs.BUILD_COMMAND }}"
+        # Build the ROM 
+        . build/envsetup.sh && \
+        goafterlife Mi439_4_19 ; \
+        goafterlife Mi439_4_19 userdebug ; \
       timeout-minutes: 1440
 
       # Send Build 'status' notification (Success)
